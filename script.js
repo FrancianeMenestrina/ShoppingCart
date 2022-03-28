@@ -46,4 +46,14 @@ window.onload = async () => {
     const novoElementoLista = createProductItemElement(elemento);
     document.querySelector('.items').appendChild(novoElementoLista);
   });
+  // const idProduct = await fetchItem();
+  const adicionarAoCarrinho = Array.from(document.getElementsByClassName('item__add'));
+  adicionarAoCarrinho.forEach((elemento) => {
+    elemento.addEventListener('click', async function test(element) {
+      const idItem = element.target.parentNode.querySelector('.item__sku').innerText;
+      const product = await fetchItem(idItem);
+      const cartIdPriceName = createCartItemElement(product);
+      document.querySelector('.cart__items').appendChild(cartIdPriceName);
+    });
+  });
 };
