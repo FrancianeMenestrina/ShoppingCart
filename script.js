@@ -27,6 +27,20 @@ function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
+
+async function totalItemsPrices() {
+  const cartItems = Array.from(document.querySelectorAll('.cart__item'));
+  let totalPrice = 0;
+  cartItems.forEach((e) => {
+    console.log('log array', [e.length - 1]);
+    console.log('log inner', e.innerText);
+    const valueProduct = e.innerText.split('|')[e.length - 1].replace('PRICE:', '').trim();
+    console.log(valueProduct, parseFloat(valueProduct));
+    totalPrice += valueProduct;
+  });
+  totalPrice.innerText = totalItemsPrices;
+}
+
 async function removeItem(e) {
   const idProduct = e.target.innerText.split('|')[0].replace('SKU:', '').trim();
   const cartItemsArray = getSavedCartItems();
@@ -35,6 +49,7 @@ async function removeItem(e) {
   cartItemsArray.splice(indexObjSerRemovido, 1);
   localStorage.setItem('cartItems', JSON.stringify(cartItemsArray));
   await e.target.remove();
+  totalItemsPrices();
 }
 function cartItemClickListener(event) {
   const cartItems = Array.from(document.querySelectorAll('.cart__item'));
@@ -49,6 +64,11 @@ function createCartItemElement({ id: sku, title: name, price: salePrice }) {
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
   li.addEventListener('click', cartItemClickListener);
   return li;
+}
+
+async function addTotalPrice() {
+  const price = await totalItemPrices();
+  document.querySelector('.total-price').appendChild(price);
 }
 
 const loadProducts = async () => {
@@ -70,6 +90,7 @@ const addListenerProducts = async () => {
       const cartItemsArray = getSavedCartItems();
       saveCartItems(product, cartItemsArray);
       cartItemClickListener();
+      totalItemsPrices();
     });
   });
 };
@@ -82,6 +103,17 @@ const loadCartItemfromLocalStorage = async () => {
     cartIdPriceName.addEventListener('click', removeItem);
   });
 };
+
+const clear = () => {
+const listaPai = document.querySelector('.cart__items');
+listaPai.innerHTML = '';
+};
+
+const clearCart = () => {
+const buttonClear = document.querySelector('.empty-cart');
+buttonClear.addEventListener('click', clear);
+};
+clearCart();
 
 window.onload = async () => {
   await loadProducts();
