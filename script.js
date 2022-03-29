@@ -111,7 +111,19 @@ buttonClear.addEventListener('click', clear);
 };
 clearCart();
 
+const loadingAppears = () => {
+  const loading = document.querySelector('.loading');
+  loading.innerHTML = 'Carregando...';
+  };
+
+const loadingDesappears = async () => {
+  const loading = document.querySelector('.loading');
+  loading.remove();
+};
+
 window.onload = async () => {
+  loadingAppears();
+  await setTimeout(loadingDesappears, 2000);
   await loadProducts();
   await addListenerProducts();
   await loadCartItemfromLocalStorage();
