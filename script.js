@@ -83,7 +83,8 @@ const addListenerProducts = async () => {
       const cartIdPriceName = createCartItemElement(product);
       document.querySelector(cartItemConst).appendChild(cartIdPriceName);
       const cartItemsArray = getSavedCartItems();
-      saveCartItems(product, cartItemsArray);
+      cartItemsArray.push(JSON.stringify(product));
+      saveCartItems(JSON.stringify(cartItemsArray));
       cartItemClickListener();
       totalItemsPrices();
     });
@@ -100,21 +101,21 @@ const loadCartItemfromLocalStorage = async () => {
 };
 
 const clear = () => {
-const listaPai = document.querySelector(cartItemConst);
-listaPai.innerHTML = '';
-document.querySelector('.total-price').innerHTML = '0';
+  const listaPai = document.querySelector(cartItemConst);
+  listaPai.innerHTML = '';
+  document.querySelector('.total-price').innerHTML = '0.00';
+  saveCartItems('[]');
 };
 
 const clearCart = () => {
-const buttonClear = document.querySelector('.empty-cart');
-buttonClear.addEventListener('click', clear);
+  const buttonClear = document.querySelector('.empty-cart');
+  buttonClear.addEventListener('click', clear);
 };
-clearCart();
 
 const loadingAppears = () => {
   const loading = document.querySelector('.loading');
   loading.innerHTML = 'Carregando...';
-  };
+};
 
 const loadingDesappears = async () => {
   const loading = document.querySelector('.loading');
@@ -127,4 +128,5 @@ window.onload = async () => {
   await loadProducts();
   await addListenerProducts();
   await loadCartItemfromLocalStorage();
+  clearCart();
 };
