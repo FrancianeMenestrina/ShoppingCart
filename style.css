@@ -150,18 +150,16 @@ body {
 }
 
 .cart__item {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-  /* border: groove 3px #a6c288; */
+  border: groove 3px green;
   height: 130px;
   display: flex;
   padding: 20px;
   text-align: center;
   align-items: center;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
-.valor{
+.valor {
   font-size: 20px;
   font-style: oblique;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
