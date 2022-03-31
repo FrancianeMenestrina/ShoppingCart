@@ -42,7 +42,7 @@ async function totalItemsPrices() {
 
 async function removeItem(e) {
   const idProduct = e.target.innerText.split('|')[0].replace('SKU:', '').trim();
-  const cartItemsArray = getSavedCartItems();
+  const cartItemsArray = JSON.parse(getSavedCartItems());
   const mapItems = cartItemsArray.map((item) => JSON.parse(item));
   const indexObjSerRemovido = mapItems.findIndex((item) => item.id === idProduct);
   cartItemsArray.splice(indexObjSerRemovido, 1);
@@ -82,7 +82,7 @@ const addListenerProducts = async () => {
       const product = await fetchItem(idItem);
       const cartIdPriceName = createCartItemElement(product);
       document.querySelector(cartItemConst).appendChild(cartIdPriceName);
-      const cartItemsArray = getSavedCartItems();
+      const cartItemsArray = JSON.parse(getSavedCartItems());
       cartItemsArray.push(JSON.stringify(product));
       saveCartItems(JSON.stringify(cartItemsArray));
       cartItemClickListener();
@@ -92,7 +92,7 @@ const addListenerProducts = async () => {
 };
 
 const loadCartItemfromLocalStorage = async () => {
-  const cartItemsArray = getSavedCartItems();
+  const cartItemsArray = JSON.parse(getSavedCartItems());
   cartItemsArray.forEach((item) => {
     const cartIdPriceName = createCartItemElement(JSON.parse(item));
     document.querySelector(cartItemConst).appendChild(cartIdPriceName);
