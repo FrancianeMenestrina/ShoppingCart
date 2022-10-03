@@ -1,16 +1,24 @@
-# 🚧 README em construção 🚧
+<h1>Shopping Cart Project</h1>
 
-<!-- Olá, Tryber!
+Esta aplicação trata-se de um carrinho de compras totalmente dinâmico, onde o usuário deverá ser capaz de:
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+- Adicionar um produto ao carrinho;
+- Remover um produto do carinho;
+- Esvaziar o carrinho;
+- O totalizador do valor final do carrinho sempre deve estar atualizado;
 
-É essencial que você preencha esse documento por conta própria, ok?
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+<h2>Tecnologias utilizadas:</h2>
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+- JavaScript
+- Funções assíncronas
+- Requisição para API
+- HTML
+- CSS
+- Testes unitários com Jest
 
--->
+
+
+
+
+
